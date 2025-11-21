@@ -1,0 +1,77 @@
+{
+  "hero": {
+    "heading": "Professional Developer Portfolio",
+    "subheading": "Professional Web Developer & Designer",
+    "ctaText": "View My Work",
+    "imageUrl": "/images/hero-professional.png"
+  },
+  "cards": [
+    {
+      "id": "card-1",
+      "icon": "💻",
+      "title": "Web Development",
+      "description": "Building modern, responsive websites with cutting-edge technologies and best practices."
+    },
+    {
+      "id": "card-2",
+      "icon": "🎨",
+      "title": "UI/UX Design",
+      "description": "Creating beautiful, intuitive user interfaces that enhance user experience."
+    },
+    {
+      "id": "card-3",
+      "icon": "📱",
+      "title": "Mobile Apps",
+      "description": "Developing cross-platform mobile applications that work seamlessly."
+    },
+    {
+      "id": "card-4",
+      "icon": "⚡",
+      "title": "Performance",
+      "description": "Optimizing applications for speed, efficiency, and exceptional performance."
+    }
+  ],
+  "projects": [
+    {
+      "id": "project-1",
+      "title": "E-Commerce Platform",
+      "description": "A full-featured online shopping platform with payment integration and admin dashboard.",
+      "link": "https://example.com/project1",
+      "image": "https://via.placeholder.com/400x300/4169E1/FFFFFF?text=E-Commerce"
+    },
+    {
+      "id": "project-2",
+      "title": "Portfolio Website",
+      "description": "Modern portfolio website with dynamic content management and smooth animations.",
+      "link": "https://example.com/project2",
+      "image": "https://via.placeholder.com/400x300/000080/FFFFFF?text=Portfolio"
+    },
+    {
+      "id": "project-3",
+      "title": "Task Management App",
+      "description": "Collaborative task management tool with real-time updates and team features.",
+      "link": "https://example.com/project3",
+      "image": "https://via.placeholder.com/400x300/4169E1/FFFFFF?text=Task+Manager"
+    }
+  ],
+  "footer": {
+    "socialLinks": [
+      {
+        "name": "GitHub",
+        "url": "https://github.com",
+        "icon": "github"
+      },
+      {
+        "name": "LinkedIn",
+        "url": "https://linkedin.com",
+        "icon": "linkedin"
+      },
+      {
+        "name": "Twitter",
+        "url": "https://twitter.com",
+        "icon": "twitter"
+      }
+    ],
+    "copyrightText": "© 2025 Portfolio. All rights reserved."
+  }
+}

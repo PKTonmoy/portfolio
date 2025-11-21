@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Portfolio</title>
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+
+<body>
+    <!-- Login Page -->
+    <div id="loginPage" class="login-container">
+        <div class="login-box">
+            <h1>Admin Login</h1>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required autocomplete="username">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required autocomplete="current-password">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    <span>Login</span>
+                </button>
+                <div id="loginMessage" style="display: none; margin-top: 1rem;"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboard" class="dashboard hidden">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Admin Panel</h2>
+                <p>Portfolio Management</p>
+            </div>
+            <nav>
+                <ul class="sidebar-nav">
+                    <li><a href="#" data-section="overview" class="active">Dashboard</a></li>
+                    <li><a href="#" data-section="hero">Hero Section</a></li>
+                    <li><a href="#" data-section="cards">Services/Cards</a></li>
+                    <li><a href="#" data-section="projects">Projects</a></li>
+                    <li><a href="#" data-section="messages">Messages</a></li>
+                    <li><a href="#" data-section="footer">Footer</a></li>
+                </ul>
+            </nav>
+            <button class="logout-btn" id="logoutBtn">Logout</button>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Overview Section -->
+            <div id="section-overview" class="content-section">
+                <div class="content-header">
+                    <h1>Dashboard Overview</h1>
+                    <p>Welcome to your portfolio admin panel</p>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h2 id="stat-cards">0</h2>
+                        <p>Services/Cards</p>
+                    </div>
+                    <div class="stat-card">
+                        <h2 id="stat-projects">0</h2>
+                        <p>Projects</p>
+                    </div>
+                    <div class="stat-card">
+                        <h2 id="stat-messages">0</h2>
+                        <p>Messages</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Section -->
+            <div id="section-hero" class="content-section hidden">
+                <div class="content-header">
+                    <h1>Hero Section</h1>
+                    <p>Update your hero section content</p>
+                </div>
+                <div class="admin-card">
+                    <form id="heroForm">
+                        <div class="form-group">
+                            <label for="hero-heading">Heading</label>
+                            <input type="text" id="hero-heading" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="hero-subheading">Subheading</label>
+                            <input type="text" id="hero-subheading" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="hero-cta">CTA Button Text</label>
+                            <input type="text" id="hero-cta" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="hero-image">Image URL</label>
+                            <input type="text" id="hero-image" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update Hero Section</button>
+                    </form>
+                    <div id="hero-message" style="display: none; margin-top: 1rem;"></div>
+                </div>
+            </div>
+
+            <!-- Cards Section -->
+            <div id="section-cards" class="content-section hidden">
+                <div class="content-header">
+                    <h1>Services/Cards</h1>
+                    <p>Manage your services and skills</p>
+                </div>
+                <button class="btn btn-primary" id="addCardBtn">+ Add New Card</button>
+                <div id="cardsList" style="margin-top: 2rem;"></div>
+            </div>
+
+            <!-- Projects Section -->
+            <div id="section-projects" class="content-section hidden">
+                <div class="content-header">
+                    <h1>Projects</h1>
+                    <p>Manage your portfolio projects</p>
+                </div>
+                <button class="btn btn-primary" id="addProjectBtn">+ Add New Project</button>
+                <div id="projectsList" style="margin-top: 2rem;"></div>
+            </div>
+
+            <!-- Messages Section -->
+            <div id="section-messages" class="content-section hidden">
+                <div class="content-header">
+                    <h1>Messages</h1>
+                    <p>Contact form submissions</p>
+                </div>
+                <div id="messagesList"></div>
+            </div>
+
+            <!-- Footer Section -->
+            <div id="section-footer" class="content-section hidden">
+                <div class="content-header">
+                    <h1>Footer</h1>
+                    <p>Update footer content</p>
+                </div>
+                <div class="admin-card">
+                    <form id="footerForm">
+                        <div class="form-group">
+                            <label for="footer-copyright">Copyright Text</label>
+                            <input type="text" id="footer-copyright" required>
+                        </div>
+                        <h4 style="margin-top: 2rem; margin-bottom: 1rem;">Social Links</h4>
+                        <div id="socialLinksContainer"></div>
+                        <button type="submit" class="btn btn-primary">Update Footer</button>
+                    </form>
+                    <div id="footer-message" style="display: none; margin-top: 1rem;"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Card Modal -->
+    <div id="cardModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="cardModalTitle">Add Card</h3>
+                <button class="modal-close" onclick="closeCardModal()">×</button>
+            </div>
+            <form id="cardForm">
+                <input type="hidden" id="card-id">
+                <div class="form-group">
+                    <label for="card-icon">Icon (Emoji)</label>
+                    <input type="text" id="card-icon" placeholder="💻" required>
+                </div>
+                <div class="form-group">
+                    <label for="card-title">Title</label>
+                    <input type="text" id="card-title" required>
+                </div>
+                <div class="form-group">
+                    <label for="card-description">Description</label>
+                    <textarea id="card-description" required></textarea>
+                </div>
+                <div class="actions">
+                    <button type="submit" class="btn btn-primary">Save Card</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeCardModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Project Modal -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="projectModalTitle">Add Project</h3>
+                <button class="modal-close" onclick="closeProjectModal()">×</button>
+            </div>
+            <form id="projectForm">
+                <input type="hidden" id="project-id">
+                <div class="form-group">
+                    <label for="project-title">Title</label>
+                    <input type="text" id="project-title" required>
+                </div>
+                <div class="form-group">
+                    <label for="project-description">Description</label>
+                    <textarea id="project-description" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="project-link">Project Link (URL)</label>
+                    <input type="url" id="project-link" required>
+                </div>
+                <div class="form-group">
+                    <label for="project-image">Image URL</label>
+                    <input type="text" id="project-image" required>
+                </div>
+                <div class="actions">
+                    <button type="submit" class="btn btn-primary">Save Project</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeProjectModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/js/admin.js"></script>
+</body>
+
+</html>

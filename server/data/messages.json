@@ -1,0 +1,10 @@
+[
+  {
+    "id": "msg-1763746652585",
+    "name": "John Doe",
+    "email": "john@example.com",
+    "message": "This is a test message from the contact form",
+    "timestamp": "2025-11-21T17:37:32.586Z",
+    "read": false
+  }
+]

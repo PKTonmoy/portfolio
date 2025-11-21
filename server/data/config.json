@@ -1,0 +1,7 @@
+{
+    "admin": {
+        "username": "admin",
+        "password": "admin123"
+    },
+    "sessionSecret": "portfolio-secret-key-change-in-production"
+}
