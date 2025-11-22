@@ -1,32 +1,32 @@
 {
   "hero": {
-    "heading": "Professional Developer Portfolio",
-    "subheading": "Professional Web Developer & Designer",
+    "heading": "PKTonmoy",
+    "subheading": "Hi, I'm PKTonmoy a professional Web Developer and Product Lead. To create easy path in digital product to use comfortly and develop the business model is my first priority.",
     "ctaText": "View My Work",
     "imageUrl": "/images/hero-professional.png"
   },
   "cards": [
     {
       "id": "card-1",
-      "icon": "💻",
+      "icon": "<i class=\"fas fa-laptop-code\"></i>",
       "title": "Web Development",
-      "description": "Building modern, responsive websites with cutting-edge technologies and best practices."
+      "description": "Building modern, responsive websites with cutting-edge technologies."
     },
     {
       "id": "card-2",
-      "icon": "🎨",
+      "icon": "<i class=\"fas fa-palette\"></i>",
       "title": "UI/UX Design",
       "description": "Creating beautiful, intuitive user interfaces that enhance user experience."
     },
     {
       "id": "card-3",
-      "icon": "📱",
+      "icon": "<i class=\"fas fa-mobile-screen-button\"></i>",
       "title": "Mobile Apps",
       "description": "Developing cross-platform mobile applications that work seamlessly."
     },
     {
       "id": "card-4",
-      "icon": "⚡",
+      "icon": "<i class=\"fas fa-bolt\"></i>",
       "title": "Performance",
       "description": "Optimizing applications for speed, efficiency, and exceptional performance."
     }
@@ -34,31 +34,31 @@
   "projects": [
     {
       "id": "project-1",
-      "title": "E-Commerce Platform",
-      "description": "A full-featured online shopping platform with payment integration and admin dashboard.",
-      "link": "https://example.com/project1",
-      "image": "https://via.placeholder.com/400x300/4169E1/FFFFFF?text=E-Commerce"
+      "title": "Paymor App",
+      "description": "A seamless payment solution for modern businesses.",
+      "link": "#",
+      "image": "https://via.placeholder.com/400x300/002147/FFFFFF?text=Paymor+App"
     },
     {
       "id": "project-2",
-      "title": "Portfolio Website",
-      "description": "Modern portfolio website with dynamic content management and smooth animations.",
-      "link": "https://example.com/project2",
-      "image": "https://via.placeholder.com/400x300/000080/FFFFFF?text=Portfolio"
+      "title": "Mama Khabo App",
+      "description": "Food delivery application with real-time tracking.",
+      "link": "#",
+      "image": "https://via.placeholder.com/400x300/1B3A5B/FFFFFF?text=Mama+Khabo"
     },
     {
       "id": "project-3",
-      "title": "Task Management App",
-      "description": "Collaborative task management tool with real-time updates and team features.",
-      "link": "https://example.com/project3",
-      "image": "https://via.placeholder.com/400x300/4169E1/FFFFFF?text=Task+Manager"
+      "title": "Biman App",
+      "description": "Flight booking system with intuitive interface.",
+      "link": "#",
+      "image": "https://via.placeholder.com/400x300/002147/FFFFFF?text=Biman+App"
     }
   ],
   "footer": {
     "socialLinks": [
       {
         "name": "GitHub",
-        "url": "https://github.com",
+        "url": "https://github.com/PKTonmoy",
         "icon": "github"
       },
       {
@@ -72,6 +72,6 @@
         "icon": "twitter"
       }
     ],
-    "copyrightText": "© 2025 Portfolio. All rights reserved."
+    "copyrightText": "© 2025 PKTonmoy. All rights reserved."
   }
 }
