@@ -4,6 +4,7 @@ const path = require('path');
 const authRoutes = require('./routes/auth');
 const contentRoutes = require('./routes/content');
 const messagesRoutes = require('./routes/messages');
+const uploadRoutes = require('./routes/upload');
 const config = require('./data/config.json');
 
 const app = express();
@@ -29,6 +30,7 @@ app.use(session({
 app.use('/api/auth', authRoutes);
 app.use('/api/content', contentRoutes);
 app.use('/api/messages', messagesRoutes);
+app.use('/api/upload', uploadRoutes);
 
 // Serve admin page
 app.get('/admin', (req, res) => {

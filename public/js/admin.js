@@ -6,6 +6,57 @@ let currentContent = null;
 let editingCardId = null;
 let editingProjectId = null;
 
+// Image Upload Helper Function
+async function uploadImage(fileInput) {
+    const file = fileInput.files[0];
+    if (!file) return null;
+
+    const formData = new FormData();
+    formData.append('image', file);
+
+    try {
+        const response = await fetch(`${API_BASE}/upload/image`, {
+            method: 'POST',
+            body: formData
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            return data.imageUrl;
+        } else {
+            throw new Error(data.message);
+        }
+    } catch (error) {
+        console.error('Upload error:', error);
+        alert('Failed to upload image: ' + error.message);
+        return null;
+    }
+}
+
+// Preview Image Helper
+function setupImagePreview(fileInputId, previewContainerId) {
+    const fileInput = document.getElementById(fileInputId);
+    const previewContainer = document.getElementById(previewContainerId);
+
+    if (fileInput && previewContainer) {
+        fileInput.addEventListener('change', function () {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const img = previewContainer.querySelector('img');
+                    img.src = e.target.result;
+                    previewContainer.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            } else {
+                previewContainer.style.display = 'none';
+            }
+        });
+    }
+}
+
 // Check authentication on load
 document.addEventListener('DOMContentLoaded', async () => {
     const authResponse = await fetch(`${API_BASE}/auth/check`);
@@ -13,6 +64,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (authData.authenticated) {
         showDashboard();
+
+        // Setup image preview listeners
+        setupImagePreview('hero-image-upload', 'hero-image-preview');
+        setupImagePreview('project-image-upload', 'project-image-preview');
     } else {
         showLogin();
     }
@@ -120,11 +175,26 @@ function loadHeroSection() {
 document.getElementById('heroForm').addEventListener('submit', async (e) => {
     e.preventDefault();
 
+    // Check if user uploaded a file
+    const fileInput = document.getElementById('hero-image-upload');
+    let imageUrl = document.getElementById('hero-image').value;
+
+    // If file is selected, upload it first
+    if (fileInput.files.length > 0) {
+        const uploadedUrl = await uploadImage(fileInput);
+        if (uploadedUrl) {
+            imageUrl = uploadedUrl;
+        } else {
+            showMessage('hero-message', 'Failed to upload image', 'error');
+            return;
+        }
+    }
+
     const heroData = {
         heading: document.getElementById('hero-heading').value,
         subheading: document.getElementById('hero-subheading').value,
         ctaText: document.getElementById('hero-cta').value,
-        imageUrl: document.getElementById('hero-image').value
+        imageUrl: imageUrl
     };
 
     try {
@@ -136,6 +206,11 @@ document.getElementById('heroForm').addEventListener('submit', async (e) => {
 
         const data = await response.json();
         showMessage('hero-message', data.message, 'success');
+
+        // Clear file input and preview
+        fileInput.value = '';
+        document.getElementById('hero-image-preview').style.display = 'none';
+
         loadContent();
     } catch (error) {
         showMessage('hero-message', 'Failed to update hero section', 'error');
@@ -307,11 +382,26 @@ function closeProjectModal() {
 document.getElementById('projectForm').addEventListener('submit', async (e) => {
     e.preventDefault();
 
+    // Check if user uploaded a file
+    const fileInput = document.getElementById('project-image-upload');
+    let imageUrl = document.getElementById('project-image').value;
+
+    // If file is selected, upload it first
+    if (fileInput.files.length > 0) {
+        const uploadedUrl = await uploadImage(fileInput);
+        if (uploadedUrl) {
+            imageUrl = uploadedUrl;
+        } else {
+            alert('Failed to upload image');
+            return;
+        }
+    }
+
     const projectData = {
         title: document.getElementById('project-title').value,
         description: document.getElementById('project-description').value,
         link: document.getElementById('project-link').value,
-        image: document.getElementById('project-image').value
+        image: imageUrl
     };
 
     const projectId = document.getElementById('project-id').value;
@@ -327,6 +417,10 @@ document.getElementById('projectForm').addEventListener('submit', async (e) => {
 
         const data = await response.json();
         if (data.success) {
+            // Clear file input and preview
+            fileInput.value = '';
+            document.getElementById('project-image-preview').style.display = 'none';
+
             closeProjectModal();
             loadContent();
         }
